@@ -33,3 +33,22 @@ FROM (
   ) tp
 WHERE r1."Order Number" = tp."Order Number";
 
+ALTER TABLE R1_Ordes
+DROP COLUMN "Product Price";
+
+SELECT * FROM R1_Ordes;
+SELECT * FROM R1_Products_Price;
+
+-- Quero fazer uma relação nas tabulas e trazer o product price para as orders
+-- Para fazer essa relação, parece que e preciso usar JOINS
+
+-- JOIN CLAUSE
+-- Nosso dataset, temos em R1_Orders e R1_Products_Price a columna Item Name que 
+-- são iguais. 
+
+SELECT 
+  o."Order Number", o."Order Date", o."Item NAme", pp."Product Price"
+FROM R1_Ordes o
+INNER JOIN R1_Products_Price pp
+  ON o."Item Name" = pp."Item Name";
+
